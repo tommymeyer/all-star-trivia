@@ -1,0 +1,192 @@
+*
+  box-sizing: border-box
+
+body
+  margin: 0
+  padding: 0
+  min-height: 100vh
+  font-size: 19px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  font-family: Arial, Helvetica, sans-serif
+  line-height: 1.5
+
+.app
+  max-width: 500px
+  padding-bottom: 30px
+  padding-top: 30px
+
+.streak-checker
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  progress
+    margin: 0
+
+.next-question-btn
+  background: #ccc
+  border: 1px solid black
+  box-shadow: 0 8px 0 0, -4px 8px 0 0, 4px 8px 0 0
+  cursor: pointer
+  font-size: 12px
+  font-weight: bold
+  padding: 10px 20px
+  transition: all 0.1s ease-in-out
+  width: auto
+  &:hover
+    box-shadow: 0 4px 0 0, -2px 4px 0 0, 2px 4px 0 0
+    transform: translateY(4px)
+    span
+      transform: translateX(4px)
+  &:active
+    box-shadow: none
+    transform: translateY(8px)
+  span
+    display: inline-block
+    transition: all 0.1s ease-in-out
+
+
+// header section
+
+.question-header
+  display: flex
+  justify-content: space-between
+  margin-bottom: 15px
+
+.category-selector
+  max-width: 60%
+  select
+    font-size: 16px
+    padding: 2px 0 4px
+    width: 100%
+  p
+    margin: 0
+    font-size: 16px
+    font-weight: bold
+
+.scoreboard
+  display: flex
+  align-items: center
+  text-align: right
+  font-size: 16px
+  line-height: 1
+  > div:first-child
+    margin-right: 25px
+  .wrong
+    color: OrangeRed
+  .correct
+    color: lime
+  strong
+    color: black
+    display: block
+    font-size: 40px
+    margin-bottom: 3px
+
+.result-modal
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  .overlay
+    position: absolute
+    background: rgba(0, 0, 0, 0.5)
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 1
+
+.result-modal-content
+  background: #fff
+  border-radius: 5px
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)
+  padding: 30px
+  width: 400px
+  margin: 0 auto
+  max-width: 90%
+  text-align: center
+  z-index: 10
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.result-modal
+  &.is-correct h3
+    color: lime
+  &.is-wrong h3
+    color: OrangeRed
+
+.result-modal-content
+  h3
+    font-size: 30px
+    line-height: 1.5
+    margin-bottom: 20px
+  .correct-answer
+    margin-bottom: 20px
+    small
+      color: #777
+    strong
+      font-size: 40px
+
+
+// main section
+
+.question-main
+  background: #fff
+  border-radius: 10px
+  padding: 2.5rem
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+  min-width: 500px
+  max-width: 90%
+  min-height: 350px
+  display: flex
+  align-items: center
+
+.question
+  width: 100%
+  h2
+    font-size: 16px
+    font-weight: bold
+    margin-top: 0
+    text-align: center
+
+.answer-btn + .answer-btn
+  margin-top: 12px
+
+.answer-btn
+  background-color: #4dc0b5
+  border: 2px solid black
+  border-radius: 10px 0
+  cursor: pointer
+  display: block
+  font-size: 16px
+  line-height: 1
+  padding: 0.8rem
+  // transition: all 0.2s ease-in-out
+  width: 100%
+  &:hover
+    background-color: #a0f0ed
+    border-radius: 0 10px
+  &:active
+    background-color: black
+    border-color: white
+    color: white
+
+
+// footer section
+
+.question-footer
+  margin: 16px 0
+  text-align: right
+
+// putting down here because the svg pattern is so long
+
+body
+  background-color: MediumPurple
