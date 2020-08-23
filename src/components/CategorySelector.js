@@ -1,6 +1,7 @@
 import React from 'react';
 import categories from '../categories';
 
+
 export default function CategorySelector({ category, chooseCategory }) {
   return (
     <div className="category-selector">

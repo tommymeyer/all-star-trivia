@@ -1,50 +1,50 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import Question from './components/Question';
 import CategorySelector from './components/CategorySelector';
 import ResultModal from './components/ResultModal';
 import Scoreboard from './components/Scoreboard';
+import useTrivia from "./components/useTrivia";
 import './App.sass';
 
+
 export default function App() {
-  const [question, setQuestion] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("any");
+  const { question, getQuestion, category, setCategory } = useTrivia();
+
+  const [isCorrect, setIsCorrect] = useState(null);
 
 
-  const getQuestion = useCallback(() => {
-    let url = "https://opentdb.com/api.php?amount=1";
+  const handleQuestionAnswered = (answer) => {
+    const isAnswerCorrect = answer === question.correct_answer;
 
-    if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
+    setIsCorrect(isAnswerCorrect);
+  };
 
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((data) => setQuestion(data.results[0]));
-  }, [selectedCategory]);
+  const handleNextQuestion = () => {
+    setIsCorrect(null);
 
-
-  useEffect(() => {
     getQuestion();
-  }, [getQuestion, selectedCategory]);
+  };
 
 
   return (
     <div className="app">
       {/* show the result modal ----------------------- */}
-      {/* <ResultModal /> */}
+      {isCorrect !== null && <ResultModal isCorrect={isCorrect} question={question} getQuestion={handleNextQuestion} />}
 
       {/* question header ----------------------- */}
       <div className="question-header">
-        <CategorySelector category={selectedCategory} chooseCategory={setSelectedCategory} />
-        <Scoreboard />
+        <CategorySelector category={category} chooseCategory={setCategory} />
+        <Scoreboard isCorrect={isCorrect} />
       </div>
 
       {/* the question itself ----------------------- */}
       <div className="question-main">
-        {question && <Question question={question} />}
+        {question && <Question question={question} answerQuestion={handleQuestionAnswered} />}
       </div>
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
-        <button className="next-question-btn">Go to next question <span role="img" aria-label="Pointing right emoji.">👉</span></button>
+        <button className="next-question-btn" onClick={handleNextQuestion}>Go to next question <span role="img" aria-label="Pointing right emoji.">👉</span></button>
       </div>
     </div>
   );
