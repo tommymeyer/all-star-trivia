@@ -17,7 +17,7 @@ export default function ResultModal({ isCorrect, question, getQuestion }) {
         {!isCorrect && (
           <>
             <h3>
-              <span role="img" aria-label="Row of sad-faced emojis.">😟😢😟</span>
+              <span role="img" aria-label="Row of sad-faced emojis.">😢😢😢</span>
               <br />
               YOU LOST!
             </h3>
